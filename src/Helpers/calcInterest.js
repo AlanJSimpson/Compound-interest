@@ -1,4 +1,8 @@
-const calculateInterest = (initialValue, monthlyInterest, monthlyPeriod) => {
+export default function calculateInterest(
+  initialValue,
+  monthlyInterest,
+  monthlyPeriod
+) {
   const newInstallments = [];
 
   let currentId = 1;
@@ -23,4 +27,5 @@ const calculateInterest = (initialValue, monthlyInterest, monthlyPeriod) => {
       profit: monthlyInterest > 0,
     });
   }
-};
+  return newInstallments;
+}

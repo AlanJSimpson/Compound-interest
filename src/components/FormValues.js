@@ -1,35 +1,32 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-export default function FormValues({ onFormChange }) {
-  const [mountValue, setMountValue] = useState(100);
-  const [interest, setInterest] = useState(0.5);
-  const [periods, setPeriods] = useState(1);
-
-  useEffect(() => {
-    onFormChange({ mountValue, interest, periods });
-  }, [interest, mountValue, periods]);
-
+export default function FormValues({
+  mountInitial,
+  interestInitial,
+  periodInitial,
+  onFormChange,
+}) {
   const handleMountChange = (event) => {
-    setMountValue(event.target.value);
-  };
-
-  const handleInterestChange = (event) => {
-    setInterest(event.target.value);
-  };
-
-  const handlePeriodsChange = (event) => {
-    setPeriods(event.target.value);
+    if (event.target.id === "mountValue") {
+      return onFormChange(+event.target.value, null, null);
+    }
+    if (event.target.id === "interest") {
+      return onFormChange(null, +event.target.value, null);
+    }
+    if (event.target.id === "period") {
+      return onFormChange(null, null, +event.target.value);
+    }
   };
 
   return (
     <div className="row">
       <form className="center">
         <div className="col l4">
-          <label htmlFor="InitialMount">Montante inicial</label>
+          <label htmlFor="mountValue">Montante inicial</label>
           <input
-            value={mountValue}
-            id="InitialMount"
+            value={mountInitial}
+            id="mountValue"
             type="number"
             step="100"
             min="100"
@@ -37,23 +34,25 @@ export default function FormValues({ onFormChange }) {
           />
         </div>
         <div className="col l4">
-          <label>Taxa de juros Mensal</label>
+          <label htmlFor="interest">Taxa de juros Mensal</label>
           <input
-            value={interest}
+            value={interestInitial}
             type="number"
             step="0.1"
             min="-12"
             max="12"
-            onChange={handleInterestChange}
+            id="interest"
+            onChange={handleMountChange}
           />
         </div>
         <div className="col l4">
-          <label>Períodos (meses)</label>
+          <label htmlFor="period">Períodos (meses)</label>
           <input
-            value={periods}
+            id="period"
+            value={periodInitial}
             type="number"
             min="1"
-            onChange={handlePeriodsChange}
+            onChange={handleMountChange}
           />
         </div>
       </form>
