@@ -48,12 +48,12 @@ const style = {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
 
     border: "1px solid lightgray",
     backgroundColor: "#fbf7ec",
     borderRadius: "5px",
-    padding: "5px",
+    padding: "5px 10px",
     marginBottom: "10px",
   },
   flexColumn: {
