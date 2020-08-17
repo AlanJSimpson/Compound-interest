@@ -1,24 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import "materialize-css";
+import FormValues from "./components/FormValues";
+import CalcBox from "./components/CalcBox";
 
 function App() {
+  const [calValues, setCalValues] = useState({});
+  const handleChangeForm = (currentValues) => {
+    return setCalValues(currentValues);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <h1 className="center">React - Juros Compostos</h1>
+      <FormValues onFormChange={handleChangeForm} />
+      <CalcBox calcValues={calValues} />
     </div>
   );
 }
